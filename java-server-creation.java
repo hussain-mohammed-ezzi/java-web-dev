@@ -12,9 +12,25 @@ public class ServerReadNetEx{
        Socket s = ss.accept();
        System.out.Println('conncetion request recived');
        /// Get IO stream 
-       InputStream is = s.getInputStream()
-         
-     }  
+       InputStream is = s.getInputStream();
+       // attaching ObjectOutputStream over input stream 
+        ObjectInputStream ois = new ObjectInputStream(is);
+        // read PerosnInfo object from network 
+        PersonInfo p =(PersonInfo)ois.readObject(is);
+      p.printPersonInfo();
+      // closing communication socket 
+      s.close()
+       
+      
+     } 
+
+
+
+  
+    // end while 
+    catch(Exception ex) {
+     system.out.println(ex);
+    }
    }
  } 
 }
